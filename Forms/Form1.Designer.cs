@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MenuBarPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.MonthPanel = new System.Windows.Forms.Panel();
@@ -98,6 +99,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             this.MenuBarPanel.SuspendLayout();
             this.MonthPanel.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -119,6 +121,7 @@
             // MenuBarPanel
             // 
             this.MenuBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.MenuBarPanel.Controls.Add(this.lblTime);
             this.MenuBarPanel.Controls.Add(this.button1);
             this.MenuBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuBarPanel.Location = new System.Drawing.Point(0, 0);
@@ -1105,6 +1108,16 @@
             this.label2.Text = "Fri";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("배달의민족 한나체 Air", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTime.Location = new System.Drawing.Point(12, 8);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(42, 13);
+            this.lblTime.TabIndex = 1;
+            this.lblTime.Text = "00:00";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1114,10 +1127,13 @@
             this.Controls.Add(this.MonthPanel);
             this.Controls.Add(this.MenuBarPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MenuBarPanel.ResumeLayout(false);
+            this.MenuBarPanel.PerformLayout();
             this.MonthPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -1215,6 +1231,7 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label lblTime;
     }
 }
 

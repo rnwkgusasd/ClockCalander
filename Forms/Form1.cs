@@ -33,6 +33,12 @@ namespace ClockCalender
         // Current Date Time Variable
         // =======================================================
         private DateTime CurrDateTime;
+
+        // =======================================================
+        // Current Date Time Variable
+        // =======================================================
+        private bool IsRunningClock = true;
+        private Thread Clock;
         #endregion
 
         #region Enum
@@ -89,8 +95,6 @@ namespace ClockCalender
         private void DragOutForm(object sender, MouseEventArgs e)
         {
             IsDraging = false;
-
-            if (th != null && th.IsAlive) th.Abort();
         }
 
         private void DragThread()
@@ -102,6 +106,9 @@ namespace ClockCalender
                     CurrMousePos = new Point(Cursor.Position.X - ClickPos.X, Cursor.Position.Y - ClickPos.Y);
 
                     Invoke(new Action(() => this.Location = CurrMousePos));
+
+                    Application.DoEvents();
+                    Thread.Sleep(1);
                 }
             }
         }
@@ -135,11 +142,34 @@ namespace ClockCalender
         }
         #endregion
 
+        #region Clock Thread Function
+        private void TimeThread()
+        {
+            ManualResetEvent tMr = new ManualResetEvent(false);
+
+            while(IsRunningClock)
+            {
+                if(!tMr.WaitOne(300))
+                {
+                    string tNowTime = DateTime.Now.ToString("hh:mm");
+                    lblTime?.Invoke(new Action(() =>
+                    {
+                        if (lblTime.Text != tNowTime) lblTime.Text = tNowTime;
+                    }));
+                    Application.DoEvents();
+                }
+            }
+        }
+        #endregion
+
         #region Form Load
         private void Form1_Load(object sender, EventArgs e)
         {
             CurrDateTime = DateTime.Now;
             SetCalendar(CurrDateTime.Year, CurrDateTime.Month, CurrDateTime.Day, true);
+
+            Clock = new Thread(TimeThread);
+            Clock.Start();
         }
         #endregion
 
@@ -328,6 +358,20 @@ namespace ClockCalender
                 lbl.MouseLeave -= LabelMouseHoverOut_Event;
             }
             #endregion
+        }
+        #endregion
+
+        #region Dispose
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DisposeAll();
+        }
+
+        private void DisposeAll()
+        {
+            IsRunningClock = false;
+            Thread.Sleep(10);
+            if(Clock.IsAlive) Clock.Abort();
         }
         #endregion
     }
