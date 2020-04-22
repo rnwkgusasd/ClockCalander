@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockCalander", "ClockCalander.csproj", "{9AD7D69D-881F-4C22-B6E8-28D3E3E0856E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockCalender", "ClockCalender.csproj", "{9AD7D69D-881F-4C22-B6E8-28D3E3E0856E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
